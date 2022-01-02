@@ -1,3 +1,5 @@
+# SocketChat v0.0.2
+
 import socket
 import threading                       
 print("Waitting to be connected......")
@@ -8,9 +10,9 @@ s.listen(1)
 conn,addr = s.accept()
 true=True
 addr = str(addr)
-print('TX-IP> %s ' %addr )
-print("RX-IP>",HostPort)
-def Receve(conn):                                               
+print('RX-IP> %s ' %addr )
+print("TX-IP>",HostPort)
+def receve(conn):
     global true                                                 
     while true:
         data = conn.recv(1024).decode('utf8')          
@@ -19,7 +21,7 @@ def Receve(conn):
         print("break. ")
         print("SRX> "+data+" from"+addr)                        
         print("STX>")
-thrd=threading.Thread(target=Receve,args=(conn,))               
+thrd=threading.Thread(target=receve,args=(conn,))
 thrd.start()
 while true:
     user_input = input('STX>')
